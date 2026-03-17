@@ -1,12 +1,14 @@
 # Contents
-- **Reshape** operator for type [real](#real)
-- **Reshape** operator for type [bool, string, float16, float32, float64, int2, int4, int8, int16, int32, int64, uint2, uint4, uint8, uint16, uint32, uint64](#types)
+- **Reshape** operator for type [(real,integer)](#real)
+- **Reshape** operator for type [(datatype,int64)](#types)
+  - where `datatype` in { bool, string, float16, float32, float64, int2, int4, int8, int16, int32, int64, uint2, uint4, uint8, uint16, uint32, uint64}
  
 Based on ONNX [Op version 25](https://onnx.ai/onnx/operators/onnx__Reshape.html).
  
-# **Reshape**
+<a id = "real"></a>
+# **Reshape** (real, integer)
  
-# Signature
+## Signature
 $Y = \textbf{Reshape}(X, S)$
 
 where:
@@ -15,6 +17,8 @@ where:
 
 ## Restrictions
 [General Restrictions](../general_restrictions.md) are applicable
+
+No specific restrictions apply to the **Reshape** operator.
  
 ## Informal specification
 
@@ -202,7 +206,7 @@ No error conditions.
 
 ## Attributes
  
-### allowzero: integer
+### $\text{allowzero}$: `integer`
 If set to 0, dimensions in $S$ with value 0 will copy the size from the corresponding dimension of the input tensor $X$.
  
 If set to 1, any 0 in $S$ means that the size of that dimension should be 0.
@@ -243,7 +247,7 @@ For any value other than 0 in $S$, the respective value will be kept (regardless
  
 ## Inputs
  
-### $X$: real
+### $\text{X}$: `real tensor`
 Tensor $X$ is the input tensor to be reshaped.
  
 ### Constraints
@@ -254,7 +258,7 @@ Tensor $X$ is the input tensor to be reshaped.
       where:
         - $size$ is defined [here](../common/definitions.md)
  
-### $S$: int64 tensor
+### $\text{S}$: `integer tensor`
 Tensor $S$ is a 1D tensor that specifies the desired shape of the output tensor $Y$.
  
 ### Constraints
@@ -272,7 +276,7 @@ Tensor $S$ is a 1D tensor that specifies the desired shape of the output tensor 
  
 ## Outputs
  
-### $Y$: real tensor
+### $\text{Y}$: `real tensor`
 Tensor $Y$ is the reshaped output tensor.
  
 ### Constraints
@@ -280,7 +284,14 @@ Tensor $Y$ is the reshaped output tensor.
    - Statement: See constraint [<b><span style="font-family: 'Courier New', monospace">[C1]</span></b>](#C3ra) on tensor $X$.
    
 ## Formal specification
-See the Why3 specification.
+ 
+[See Why3 specification](./formal/reshape.mlw).
  
 ## Numerical Accuracy
-The $\text{Reshape}$ operator does not introduce any numerical error. Hence, for all valid indices the output values are exactly equal to the corresponding input values.
+The $\textbf{Reshape}$ operator does not introduce any numerical error. Hence, for all valid indices the output values are exactly equal to the corresponding input values.
+
+<a id = "types"></a>
+# **Reshape** (datatype, int64)
+where datatype is in : { bool, string, float16, float32, float64, int2, int4, int8, int16, int32, int64, uint2, uint4, uint8, uint16, uint32, uint64 }
+
+See specification for [(real,integer)](#real).

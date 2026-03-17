@@ -75,7 +75,7 @@ Operator **Sigmoid** has no attribute.
 
 ## Inputs
 
-### $\text{X}$: real
+### $\text{X}$: `real tensor`
 
 Input tensor.
 
@@ -86,18 +86,18 @@ Input tensor.
 
 ## Outputs
 
-### $\text{Y}$: real
+### $\text{Y}$: `real tensor`
 
 Sigmoid of tensor $X$.
 
 #### Constraints
 
 - `[C1]` <a id="C1ry"></a> Shape consistency  
-  - Statement: See [constraint (C1) on X](#C1rx).
+  - Statement: see constraint [<b><span style="font-family: 'Courier New', monospace">[C1]</span></b>](#C1rx) on tensor $X$.
 
 ## Formal specification
  
-See the Why3 specification.
+[See Why3 specification](./formal/sigmoid.mlw).
 
 <a id="float"></a>
 # **Sigmoid** (float)
@@ -193,7 +193,7 @@ Operator **Sigmoid** has no attribute.
 
 ## Inputs
 
-### $\text{X}$: floating-point tensor
+### $\text{X}$: `floating-point tensor`
 
 Input tensor.
 
@@ -201,21 +201,21 @@ Input tensor.
 
 - `[C1]` <a id="C1fx"></a> Shape consistency  
   - Statement: $X$ and $Y$ shall have the same shape.
-- `[C2]` <a id="C2fx"></a> Type consistency  
-  - Statement: $X$ and $Y$ shall have the same floating-point type.
 
 ## Outputs
 
-### $\text{Y}$: floating-point tensor
+### $\text{Y}$: `floating-point tensor`
 
 Sigmoid of tensor $X$.
 
 #### Constraints
 
 - `[C1]` <a id="C1fy"></a> Shape consistency  
-  - Statement: See [constraint (C1) on X](#C1fx).
-- `[C2]` <a id="C2fy"></a> Type consistency  
-  - Statement: See [constraint (C2) on X](#C2fx).
+  - Statement: see constraint [<b><span style="font-family: 'Courier New', monospace">[C1]</span></b>](#C1fx) on tensor $X$.
+
+## Formal specification
+
+[See Why3 specification](./formal/sigmoid.mlw).
 
 ## Numeric accuracy
 

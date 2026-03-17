@@ -95,7 +95,7 @@ module CFlat
   (*proof*)
   variant { ds }
   = match ks1 , ks2 , ds with
-    | Cons k1 rks1 , Cons k2 rks2 , Cons _ rds ->
+    | Cons _ rks1 , Cons _ rks2 , Cons _ rds ->
         offset_injective rks1 rks2 rds ;
     | _ -> ()
   end

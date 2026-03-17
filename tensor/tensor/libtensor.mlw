@@ -6,7 +6,6 @@ module CTensor
   use mach.int.Int32
   use tensor.Range
   use tensor.Tensor
-  use tensor.OPWhere
   use layout.CFlat
   use libvector.CIndex
   

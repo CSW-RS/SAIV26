@@ -1,37 +1,27 @@
-# Makefile for libvector
+# ==========================================================
+# Makefile for Tensor Library - Code Extraction
+# 
+# Extracts verified C code from Why3 modules (libvector, libtensor)
+# Output: ../code/ directory C files
+# ==========================================================
 
-.PHONY: all prove update doc lib cc clean
+.PHONY: lib clean
 
-all: prove doc lib
-	@echo "------------------------------------------"
+EXTRACT=-D c -D ../drivers/cdriver.drv  --modular --interface -o ../code
 
-prove:
-	@echo "------------------------------------------"
-	@echo "--- Proofs"
-	@echo "------------------------------------------"
-	@why3find prove *.mlw -l -s -x
-
-update:
-	why3find prove *.mlw -l -s -x -m
-
-doc:
-	@echo "------------------------------------------"
-	@echo "--- Documentation"
-	@echo "------------------------------------------"
-	@rm -fr html
-	@why3find doc *.mlw -t "Tensor Library"
-
-EXTRACT=-D c -D cdriver.drv -L . --modular --interface -o lib
+# ==========================================================
+# TARGETS
+# ==========================================================
 
 lib:
 	@echo "------------------------------------------"
 	@echo "--- Extraction"
 	@echo "------------------------------------------"
-	@rm -fr lib
+	@rm -fr ../code
 	@why3 extract $(EXTRACT) libvector.CIndex
 	@why3 extract $(EXTRACT) libtensor.CTensor
-	@cd lib && gcc -c *.c
-	@find lib -type f | sort
+	@cd ../code && gcc -c *.c
+	@find ../code -type f | sort
 
 clean:
-	rm -fr lib html
+	rm -fr ../code

@@ -5,7 +5,7 @@
 #include "cindex.h"
 #include "ctensor.h"
 
-void ctensor_add(struct ctensor a, struct ctensor b, struct ctensor r);
+void cadd(struct ctensor a, struct ctensor b, struct ctensor r);
 
 #define COPADD_H_INCLUDED
 #endif // COPADD_H_INCLUDED

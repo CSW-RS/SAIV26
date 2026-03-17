@@ -12,7 +12,7 @@
  </goal>
 </theory>
 <theory name="COPAdd" proved="true">
- <goal name="ctensor_add&#39;vc" expl="VC for ctensor_add" proved="true">
+ <goal name="cadd&#39;vc" expl="VC for cadd" proved="true">
  <proof prover="0"><result status="valid" time="0.520124" steps="4258"/></proof>
  </goal>
 </theory>

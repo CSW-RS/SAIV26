@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"https://www.why3.org/why3session.dtd">
+<why3session shape_version="6">
+<prover id="0" name="CVC4" version="1.8" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="1" name="Alt-Ergo" version="2.6.2" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="CVC5" version="1.2.1" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="3" name="Z3" version="4.13.4" timelimit="1" steplimit="0" memlimit="1000"/>
+<file format="whyml" proved="true">
+<path name=".."/><path name="sigmoid.mlw"/>
+<theory name="OPSigmoid" proved="true">
+ <goal name="dsigmoid&#39;vc" expl="VC for dsigmoid" proved="true">
+ <proof prover="3"><result status="valid" time="0.009299" steps="40445"/></proof>
+ </goal>
+ <goal name="sigmoid&#39;vc" expl="VC for sigmoid" proved="true">
+ <proof prover="3"><result status="valid" time="0.023700" steps="50508"/></proof>
+ </goal>
+</theory>
+<theory name="COPSigmoid" proved="true">
+ <goal name="csigmoid&#39;vc" expl="VC for csigmoid" proved="true">
+ <proof prover="0"><result status="timeout" time="1.000000" steps="190519"/></proof>
+ <proof prover="1"><result status="timeout" time="1.000000" steps="19097"/></proof>
+ <proof prover="2"><result status="timeout" time="1.000000"/></proof>
+ <proof prover="3"><result status="timeout" time="0.783171" steps="2101674"/></proof>
+ <transf name="split_vc" proved="true" >
+  <goal name="csigmoid&#39;vc.0" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.110275" steps="360760"/></proof>
+  </goal>
+  <goal name="csigmoid&#39;vc.1" expl="integer overflow" proved="true">
+  <proof prover="3"><result status="valid" time="0.023320" steps="124666"/></proof>
+  </goal>
+  <goal name="csigmoid&#39;vc.2" expl="loop invariant init" proved="true">
+  <proof prover="3"><result status="valid" time="0.007135" steps="7032"/></proof>
+  </goal>
+  <goal name="csigmoid&#39;vc.3" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.112732" steps="18543"/></proof>
+  </goal>
+  <goal name="csigmoid&#39;vc.4" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.019547" steps="153416"/></proof>
+  </goal>
+  <goal name="csigmoid&#39;vc.5" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.040432" steps="149475"/></proof>
+  </goal>
+  <goal name="csigmoid&#39;vc.6" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.118368" steps="20904"/></proof>
+  </goal>
+  <goal name="csigmoid&#39;vc.7" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="valid" time="0.067656" steps="703"/></proof>
+  </goal>
+  <goal name="csigmoid&#39;vc.8" expl="assertion" proved="true">
+  <proof prover="1"><result status="valid" time="0.161836" steps="1836"/></proof>
+  </goal>
+  <goal name="csigmoid&#39;vc.9" expl="postcondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.028099" steps="154526"/></proof>
+  </goal>
+  <goal name="csigmoid&#39;vc.10" expl="out of loop bounds" proved="true">
+  <proof prover="3"><result status="valid" time="0.039241" steps="127744"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+</file>
+</why3session>

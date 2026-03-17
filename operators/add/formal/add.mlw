@@ -33,7 +33,7 @@ module COPAdd
     use tensor.Tensor
     use int.Int
 
-    let ctensor_add (a b r : ctensor) = 
+    let cadd (a b r : ctensor) = 
     requires { valid_tensor a }
     requires { valid_tensor b }
     requires { valid_tensor r }

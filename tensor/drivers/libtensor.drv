@@ -1,3 +1,7 @@
 module libtensor.CTensor
     syntax type ctensor "struct ctensor"
 end
+
+module libtensor.CTensorInt32
+    syntax type ctensorint32 "struct ctensorint32"
+end

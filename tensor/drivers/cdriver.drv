@@ -40,3 +40,9 @@ module libtensor.CTensor
   interface "#include <stdint.h>"
   interface "#include \"cindex.h\""
 end
+
+module libtensor.CTensorInt32
+  interface "#include <stdlib.h>"
+  interface "#include <stdint.h>"
+  interface "#include \"cindex.h\""
+end

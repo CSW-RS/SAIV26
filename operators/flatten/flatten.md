@@ -1,7 +1,7 @@
 # Contents
 
 - **Flatten** operator for type [real](#real)
-- **Flatten** operator for type [bool, string, float16, float32, float64, int2, int4, int8, int16, int32, int64, uint2, uint4, uint8, uint16, uint32, uint64](#types)
+- **Flatten** operator for type [bool, string, float16, float32, double, int2, int4, int8, int16, int32, int64, uint2, uint4, uint8, uint16, uint32, uint64](#types)
 
 Based on ONNX documentation [Flatten version 25](https://onnx.ai/onnx/operators/onnx__Flatten.html).
 
@@ -167,7 +167,7 @@ The $\textbf{Flatten}$ operator does not introduce any numerical error. Hence, f
 
 <a id="types"></a>
 # **Flatten** (type)
-Where type in in { bool, string, float16, float32, float64, int2, int4, int8, int16, int32, int64, uint2, uint4, uint8, uint16, uint32, uint64 }
+Where type in in { bool, string, float16, float32, double, int2, int4, int8, int16, int32, int64, uint2, uint4, uint8, uint16, uint32, uint64 }
 
 See specification for [real](#real).
 

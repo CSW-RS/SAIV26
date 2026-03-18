@@ -1,7 +1,7 @@
 # Contents
 - **MatMul** operator for type [(real,real)](#real)
 - **MatMul** operator for types [(float,float)](#float)
-  - where `float` in { float16, float32, float64}
+  - where `float` in { float16, float32, double}
 
 Based on ONNX documentation [MatMul version 13](https://onnx.ai/onnx/operators/onnx__MatMul.html).
 
@@ -179,7 +179,7 @@ Tensor $Y$ is the output tensor.
 <a id="float"></a>
 # **MatMul** (float, float)
 
-where float is in {float16, float32, float64}
+where float is in {float16, float32, double}
 
 # Signature
 $Y = \textbf{MatMul}(A, B)$

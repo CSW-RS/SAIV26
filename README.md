@@ -99,30 +99,20 @@ To replicate the proofs you should have the following tools installed (please ta
 To open a `.mlw` file in the Why3 IDE and inspect/replay its proofs:
 
 ```bash
-# From the operator's formal/ directory, e.g.:
+# From the operator's formal/ directory, e.g. Add operator:
 cd operators/add/formal
 
 # Launch the Why3 IDE
-why3 ide -L ../../tensor/tensor add.mlw
+why3 ide -L ../../../tensor/tensor add.mlw
 
 ```
-
 The path that follows the `-L` flag points to the directory containing the foundation modules (e.g., `tensor.mlw`, `layout.mlw`, etc.) that are required to load the operator's specification.
 
 The IDE will load the file, display all proof obligations (goals), and show the status of each goal proved because proofs are already uploaded in the folder `operators/add/formal/add`.
 
-To replay all proofs from the command line without the IDE:
+To replay a given operator proofs you can either launch the IDE and select the command *Reset Proofs* under the *Tools* menu, or you can delete the `add` - `operators/add/formal/add` - folder and re-run the command.
 
-### Extracting Verified C Code
-
-Each operator (and the tensor library) includes a `Makefile` for extracting verified C code:
-
-```bash
-# From the operator's formal/ directory:
-cd operators/add/formal
-make lib
-```
-
+### Code Extraction
 This will:
 1. Extract the shared tensor library modules (`CTensor`, `CIndex`) to C.
 2. Extract the operator-specific module (e.g., `COPAdd`) to C using the operator's driver file.

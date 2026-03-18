@@ -1,4 +1,5 @@
 module OPReshape
+
     use tensor.Tensor
     use tensor.Range
     use layout.CFlat
@@ -41,7 +42,7 @@ module OPReshape
     end
 
 
-    function calculate_dims (x: tensor 'a) (s: tensor int) (allowzero: int) : list int
+    function reshape_dims (x: tensor 'a) (s: tensor int) (allowzero: int) : list int
     =
     let s_dims = 
         if allowzero = 0 then 
@@ -89,7 +90,7 @@ module OPReshape
                     )
                 )
             }
-    requires { let y_shape = calculate_dims x s allowzero in
+    requires { let y_shape = reshape_dims x s allowzero in
                 size x.dims = size y_shape }
     requires { length s.dims = 1}
     requires {  let rank = get_dim s 0 in
@@ -97,12 +98,12 @@ module OPReshape
                     (s.data (Cons i Nil) = -1 /\ s.data (Cons j Nil) = -1) -> (i = j) 
             }
 
-    ensures { result.dims = calculate_dims x s allowzero }
+    ensures { result.dims = reshape_dims x s allowzero }
     ensures { result.background = x.background }
-    ensures { let y_shape = calculate_dims x s allowzero in
+    ensures { let y_shape = reshape_dims x s allowzero in
                 result.data = dreshape x y_shape }
     =
-    let y_shape = calculate_dims x s allowzero in
+    let y_shape = reshape_dims x s allowzero in
     { dims = y_shape ; data = dreshape x y_shape ; background = x.background }
 
 end
@@ -125,7 +126,7 @@ module COPReshape
     requires { CTensor.valid_tensor x }
     requires { CTensor.valid_tensor r }
     requires { CTensorInt64.valid_tensor s }
-    requires {  let y_shape = calculate_dims (CTensor.tensor x) (CTensorInt64.tensor s) allowzero in
+    requires {  let y_shape = reshape_dims (CTensor.tensor x) (CTensorInt64.tensor s) allowzero in
                 (ivector r.CTensor.t_dims r.CTensor.t_rank) = y_shape }
     requires { allowzero = 0 \/ allowzero = 1 }
     requires {  let rank = value_at s.t_dims 0 in
@@ -152,7 +153,7 @@ module COPReshape
                     )
                 )
             }
-    requires { let y_shape = calculate_dims (CTensor.tensor x) (CTensorInt64.tensor s) allowzero in
+    requires { let y_shape = reshape_dims (CTensor.tensor x) (CTensorInt64.tensor s) allowzero in
                 size (CTensor.tensor x).dims = size y_shape }
     requires { s.t_rank = 1 }
     requires {  let rank = value_at s.t_dims 0 in

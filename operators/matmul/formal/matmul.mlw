@@ -20,7 +20,7 @@ module OPMatmul
             Real.(a_val * b_val + dot_product a b row col Int.(i + 1) iter)
  
  
-    let rec lemma dot_product_aux_step (a b: tensor real) (row col i k iter: int)
+    let rec lemma recursive_step (a b: tensor real) (row col i k iter: int)
         requires { Int.(i <= k < iter) }
         variant { Int.(k - i) }
         ensures {
@@ -30,7 +30,7 @@ module OPMatmul
                 Real.(dot_product a b row col i k + a_val * b_val)
         }
     =
-        if i < k then Real.(dot_product_aux_step a b row col (i + 1) k iter) else ()
+        if i < k then Real.(recursive_step a b row col (i + 1) k iter) else ()
  
     function dmatmul ( a b: tensor real) (a_rows b_cols : int) : data real
     =  
@@ -77,7 +77,7 @@ module COPMatmul
     use list.Length
  
  
-    let rec lemma valid_bounds_2 (ks ds: iarray) (p q: int)
+    let rec lemma valid_bounds (ks ds: iarray) (p q: int)
       requires { p <= q }
       requires { valid_range ks p q }
       requires { valid_range ds p q }
@@ -89,7 +89,7 @@ module COPMatmul
           begin
             assert { islice ks p q = Cons (Int32.to_int (value_at ks p)) (islice ks (p+1) q) };
             assert { islice ds p q = Cons (Int32.to_int (value_at ds p)) (islice ds (p+1) q) };
-            valid_bounds_2 ks ds (p+1) q
+            valid_bounds ks ds (p+1) q
           end
  
  
@@ -101,10 +101,9 @@ module COPMatmul
     requires { value_at r.t_dims 0 = value_at a.t_dims 0 }
     requires { value_at r.t_dims 1 = value_at b.t_dims 1 }
     requires { a.t_rank = b.t_rank = r.t_rank = 2 }
-    (*New*)
     requires { length (tensor a).Tensor.dims = length (tensor b).Tensor.dims = length (tensor r).Tensor.dims = 2 }
     requires { get_dim (tensor a).Tensor.dims 1 = get_dim (tensor b).Tensor.dims 0 }
- 
+
     ensures { result -> tensor r = matmul (tensor a) (tensor b) }
  
     let ghost matmul_result = matmul (tensor a) (tensor b) in
@@ -154,9 +153,9 @@ module COPMatmul
  
                     ghost
                         begin
-                            valid_bounds_2 a_coords_array a.t_dims 0 2;
-                            valid_bounds_2 b_coords_array b.t_dims 0 2;
-                            dot_product_aux_step (tensor a) (tensor b) (to_int i) (to_int j) 0 (to_int k) (to_int iter);
+                            valid_bounds a_coords_array a.t_dims 0 2;
+                            valid_bounds b_coords_array b.t_dims 0 2;
+                            recursive_step (tensor a) (tensor b) (to_int i) (to_int j) 0 (to_int k) (to_int iter);
                         end;
  
                     let a_coords = coffset a_coords_array a.t_dims a.t_rank in

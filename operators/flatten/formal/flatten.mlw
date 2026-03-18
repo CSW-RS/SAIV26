@@ -20,7 +20,7 @@ module OPFlatten
 
 
     let rec ghost function calculate_dY0 (x : tensor 'a) (axis : int) (i : int) : int
-    (*Need this requires because of get_dim requires*)
+    (* Need this requires because calculate_dY0 is a ghost function and get_dim requires such precondition *)
     requires { 0 <= axis <= length x.dims }
     requires { 0 <= i <= axis }
     variant { axis - i }
@@ -44,6 +44,7 @@ module OPFlatten
         calculate_dY0_positive x axis (i + 1)
 
     let rec ghost function calculate_dY1 (x : tensor 'a) (axis : int) (i : int) : int
+    (* Need this requires because calculate_dY1 is a ghost function and get_dim requires such precondition *)
     requires { 0 <= axis <= length x.dims }
     requires { axis <= i <= length x.dims }
     variant { length x.dims - i }
@@ -65,7 +66,7 @@ module OPFlatten
     else
         calculate_dY1_positive x axis (i + 1)
 
-    function calculate_dims (x : tensor 'a) (axis : int) : list int
+    function flat_dims (x : tensor 'a) (axis : int) : list int
     =
     let dY0 = calculate_dY0 x axis 0 in
     let dY1 = calculate_dY1 x axis axis in
@@ -93,15 +94,15 @@ module OPFlatten
     requires { -length x.dims <= axis <= length x.dims }
 
     ensures {   let axis_normalized = normalize_axis axis (length x.dims) in
-                result.dims = calculate_dims x axis_normalized }
+                result.dims = flat_dims x axis_normalized }
 
     ensures { result.background = x.background }
 
     ensures {   let axis_normalized = normalize_axis axis (length x.dims) in
-                result.data = dflatten x (calculate_dims x axis_normalized) }
+                result.data = dflatten x (flat_dims x axis_normalized) }
     =
     let axis_normalized = normalize_axis axis (length x.dims) in
-    let y_shape = calculate_dims x axis_normalized in
+    let y_shape = flat_dims x axis_normalized in
     { dims = y_shape ; data = dflatten x y_shape ; background = x.background }
 
 end
@@ -126,7 +127,7 @@ module COPFlatten
     requires { valid_tensor r }
     requires { r.t_rank = 2 }
     requires {  let axis_normalized = normalize_axis (to_int axis) (length (tensor x).dims) in  
-                (ivector r.t_dims r.t_rank) = calculate_dims (tensor x) axis_normalized }
+                (ivector r.t_dims r.t_rank) = flat_dims (tensor x) axis_normalized }
     requires { vdim x.t_dims x.t_rank = vdim r.t_dims r.t_rank }
     requires { -length (tensor x).dims <= (to_int axis) <= length (tensor x).dims }
     ensures { tensor r = flatten (tensor x) (to_int axis) }

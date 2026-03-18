@@ -9,7 +9,7 @@ module OPConv2d
   use tensor.Range
   use list.Length
 
-  function convDims (x w :tensor real) (str_h str_w :int) 
+  function conv_dims (x w :tensor real) (str_h str_w :int) 
                     (dir_h dir_w :int) (pad_top pad_left pad_bottom pad_right :int) : list int
   =
     let dY_0 = get_dim x.dims 0 in
@@ -49,7 +49,8 @@ module OPConv2d
       let x_val = coords_from_X_p x (Cons n (Cons c (Cons x_h (Cons x_w Nil))) ) pad_top pad_left in
       let w_val = w.data (Cons m (Cons c (Cons i (Cons jj Nil)))) in
       Real.(x_val * w_val + w_cools_calculate x w c i j Int.(jj + 1) n m y_h y_w str_h str_w dil_h dil_w pad_top pad_left)
-
+  
+  (* Recursive step lemma*)
   let rec lemma w_cools_split (x w : tensor real) (c i j jj k n m y_h y_w : int) (str_h str_w dil_h dil_w pad_top pad_left : int)
     requires { jj <= k < j }
     variant  { k - jj }
@@ -71,7 +72,8 @@ module OPConv2d
       0.0
     else
       w_cools_calculate x w c ii j 0 n m y_h y_w str_h str_w dil_h dil_w pad_top pad_left + w_lines_calculate x w c i Int.(ii + 1) j n m y_h y_w str_h str_w dil_h dil_w pad_top pad_left
-
+  
+  (* Recursive step lemma*)
   let rec lemma w_lines_split (x w : tensor real) (c i ii k j n m y_h y_w : int) (str_h str_w dil_h dil_w pad_top pad_left : int)
     requires { ii <= k < i }
     variant  { k - ii }
@@ -89,7 +91,8 @@ module OPConv2d
       0.0
     else
       w_lines_calculate x w cc i 0 j n m y_h y_w str_h str_w dil_h dil_w pad_top pad_left + w_channels_calculate x w c Int.(cc + 1) i j n m y_h y_w str_h str_w dil_h dil_w pad_top pad_left
-
+  
+  (* Recursive step lemma*)
   let rec lemma w_channels_split (x w : tensor real) (c i cc k j n m y_h y_w : int) (str_h str_w dil_h dil_w pad_top pad_left : int)
     requires { cc <= k < c }
     variant  { k - cc }
@@ -130,16 +133,16 @@ module OPConv2d
   requires { length x.dims = 4 }
   requires { get_dim x.dims 1 = get_dim w.dims 1 }
   requires { length w.dims = 4 }
-  requires { let y_shape = convDims x w str_h str_w dir_h dir_w pad_top pad_left pad_bottom pad_right in
+  requires { let y_shape = conv_dims x w str_h str_w dir_h dir_w pad_top pad_left pad_bottom pad_right in
               get_dim y_shape 2 > 0 /\ get_dim y_shape 3 > 0
            }
   ensures { result.background = x.background }
-  ensures { result.dims = convDims x w str_h str_w dir_h dir_w pad_top pad_left pad_bottom pad_right }
-  ensures { let y_dims = convDims x w str_h str_w dir_h dir_w pad_top pad_left pad_bottom pad_right in
+  ensures { result.dims = conv_dims x w str_h str_w dir_h dir_w pad_top pad_left pad_bottom pad_right }
+  ensures { let y_dims = conv_dims x w str_h str_w dir_h dir_w pad_top pad_left pad_bottom pad_right in
             result.data = dconv x w y_dims str_h str_w dir_h dir_w pad_top pad_left  
          }
   =
-  let y_dims = convDims x w str_h str_w dir_h dir_w pad_top pad_left pad_bottom pad_right in
+  let y_dims = conv_dims x w str_h str_w dir_h dir_w pad_top pad_left pad_bottom pad_right in
   { dims = y_dims;
     data = dconv x w y_dims str_h str_w dir_h dir_w pad_top pad_left  ;
     background = x.background;
@@ -167,7 +170,7 @@ module COPConv2d
     use layout.CFlat
     use tensor.Range
 
-
+  (* Accessing through get_dim yields the same result as value_at *)
   let lemma ivector_get_dim_value_at (coords: iarray) (n: int) (i: int)
     requires { n = 4 }
     requires { 0 <= i < n }
@@ -222,7 +225,7 @@ module COPConv2d
     end
 
 
-  let rec lemma valid_bounds_2 (ks ds: iarray) (p q: int)
+  let rec lemma valid_bounds (ks ds: iarray) (p q: int)
     requires { p <= q }
     requires { valid_range ks p q }
     requires { valid_range ds p q }
@@ -234,7 +237,7 @@ module COPConv2d
         begin
           assert { islice ks p q = Cons (Int32.to_int (value_at ks p)) (islice ks (p+1) q) };
           assert { islice ds p q = Cons (Int32.to_int (value_at ds p)) (islice ds (p+1) q) };
-          valid_bounds_2 ks ds (p+1) q
+          valid_bounds ks ds (p+1) q
         end
 
   let w_cools_calculate (x w: ctensor) (c: int32) (i:int32) (n m y_h y_w: int32)  (str_h str_w :int32) (dil_h dil_w :int32) (pad_top pad_left :int32) : (float, bool)
@@ -289,7 +292,7 @@ module COPConv2d
 
           ghost
             begin
-                valid_bounds_2 w_coords_array w.t_dims 0 4;
+                valid_bounds w_coords_array w.t_dims 0 4;
                 assert { Range.valid (ivector w_coords_array w.t_rank) (ivector w.t_dims w.t_rank) }; 
                 w_cools_split (tensor x) (tensor w) (to_int c) (to_int i) (to_int cols) 0 (to_int jj) (to_int n) (to_int m) (to_int y_h) (to_int y_w) (to_int str_h) (to_int str_w) (to_int dil_h) (to_int dil_w) (to_int pad_top) (to_int pad_left)
             end;
@@ -415,14 +418,14 @@ let cconv (x w r : ctensor) (str_h str_w : int32) (dil_h dil_w : int32)
   requires { valid_tensor w}
   requires { valid_tensor r}
   requires { x.t_rank = w.t_rank = r.t_rank = 4 }
-  requires { ivector r.t_dims r.t_rank = convDims (tensor x) (tensor w) str_h str_w dil_h dil_w pad_top pad_left pad_bottom pad_right }
+  requires { ivector r.t_dims r.t_rank = conv_dims (tensor x) (tensor w) str_h str_w dil_h dil_w pad_top pad_left pad_bottom pad_right }
   requires { str_h > 0 /\ str_w > 0 }
   requires { pad_top >= 0 /\ pad_left >= 0 /\ pad_bottom >= 0 /\ pad_right >= 0 }
   requires { dil_h > 0 /\ dil_w > 0 }
   requires { length (tensor x).dims = 4 }
   requires { get_dim (tensor x).dims 1 = get_dim (tensor w).dims 1 }
   requires { length (tensor w).dims = 4 }
-  requires { let y_shape = convDims (tensor x) (tensor w) str_h str_w dil_h dil_w pad_top pad_left pad_bottom pad_right in
+  requires { let y_shape = conv_dims (tensor x) (tensor w) str_h str_w dil_h dil_w pad_top pad_left pad_bottom pad_right in
               get_dim y_shape 2 > 0 /\ get_dim y_shape 3 > 0
            }
 

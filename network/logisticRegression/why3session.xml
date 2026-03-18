@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"https://www.why3.org/why3session.dtd">
+<why3session shape_version="6">
+<prover id="0" name="CVC4" version="1.8" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="1" name="Alt-Ergo" version="2.6.2" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="CVC5" version="1.2.1" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="3" name="Z3" version="4.13.4" timelimit="1" steplimit="0" memlimit="1000"/>
+<file format="whyml" proved="true">
+<path name=".."/><path name="logisticRegression.mlw"/>
+<theory name="Helpers" proved="true">
+ <goal name="negativeTensor&#39;vc" expl="VC for negativeTensor" proved="true">
+ <proof prover="3"><result status="valid" time="0.007994" steps="38539"/></proof>
+ </goal>
+</theory>
+<theory name="OPAdd" proved="true">
+ <goal name="add&#39;vc" expl="VC for add" proved="true">
+ <proof prover="3"><result status="valid" time="0.007199" steps="39646"/></proof>
+ </goal>
+ <goal name="add_neg" proved="true">
+ <proof prover="3"><result status="valid" time="0.015350" steps="53945"/></proof>
+ </goal>
+ <goal name="add_neg_tensor" proved="true">
+ <proof prover="3"><result status="valid" time="0.254011" steps="615581"/></proof>
+ </goal>
+</theory>
+<theory name="OPMatmul" proved="true">
+ <goal name="dot_product&#39;vc" expl="VC for dot_product" proved="true">
+ <proof prover="3"><result status="valid" time="0.000001" steps="18501"/></proof>
+ </goal>
+ <goal name="dot_product_neg&#39;vc" expl="VC for dot_product_neg" proved="true">
+ <proof prover="1"><result status="valid" time="0.061319" steps="6010"/></proof>
+ </goal>
+ <goal name="dot_product_zero&#39;vc" expl="VC for dot_product_zero" proved="true">
+ <proof prover="3"><result status="valid" time="0.015771" steps="87673"/></proof>
+ </goal>
+ <goal name="dmatmul_zero" proved="true">
+ <proof prover="2"><result status="valid" time="0.168488" steps="24971"/></proof>
+ </goal>
+ <goal name="dmatmul_neg" proved="true">
+ <proof prover="2"><result status="valid" time="0.633125" steps="83341"/></proof>
+ </goal>
+ <goal name="matmul&#39;vc" expl="VC for matmul" proved="true">
+ <proof prover="3"><result status="valid" time="0.010957" steps="65146"/></proof>
+ </goal>
+ <goal name="matmul_zero" proved="true">
+ <proof prover="2"><result status="valid" time="0.059932" steps="8747"/></proof>
+ </goal>
+ <goal name="matmul_neg" proved="true">
+ <proof prover="2"><result status="valid" time="0.053788" steps="10116"/></proof>
+ </goal>
+ <goal name="matmul_neg_tensor" proved="true">
+ <transf name="split_vc" proved="true" >
+  <goal name="matmul_neg_tensor.0" proved="true">
+  <proof prover="2"><result status="valid" time="1.398513" steps="135925"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+<theory name="OPSigmoid" proved="true">
+ <goal name="sigmoid_bounds" proved="true">
+ <proof prover="1"><result status="valid" time="0.023424" steps="76"/></proof>
+ </goal>
+ <goal name="sigmoid_neg" proved="true">
+ <proof prover="3"><result status="valid" time="0.003680" steps="14339"/></proof>
+ </goal>
+ <goal name="sigmoid_neg2" proved="true">
+ <proof prover="1"><result status="valid" time="0.056139" steps="1650"/></proof>
+ </goal>
+ <goal name="sigmoid_neg3" proved="true">
+ <proof prover="1"><result status="valid" time="0.055414" steps="2208"/></proof>
+ </goal>
+ <goal name="sigmoid_neg4" proved="true">
+ <proof prover="3"><result status="valid" time="0.004888" steps="2426"/></proof>
+ </goal>
+ <goal name="sigmoid_neg5" proved="true">
+ <proof prover="1"><result status="valid" time="0.062568" steps="2001"/></proof>
+ </goal>
+ <goal name="sigmoid_neg6" proved="true">
+ <proof prover="3"><result status="valid" time="0.013663" steps="33705"/></proof>
+ </goal>
+ <goal name="sigmoid_zero" proved="true">
+ <proof prover="3"><result status="valid" time="0.008104" steps="32995"/></proof>
+ </goal>
+ <goal name="sigmoid_derivative_bounds" proved="true">
+ <transf name="split_vc" proved="true" >
+  <goal name="sigmoid_derivative_bounds.0" proved="true">
+  <proof prover="3"><result status="valid" time="0.009067" steps="36488"/></proof>
+  </goal>
+  <goal name="sigmoid_derivative_bounds.1" proved="true">
+  <transf name="inline_goal" proved="true" >
+   <goal name="sigmoid_derivative_bounds.1.0" proved="true">
+   <transf name="split_all_full" proved="true" >
+    <goal name="sigmoid_derivative_bounds.1.0.0" proved="true">
+    <transf name="inline_goal" proved="true" >
+     <goal name="sigmoid_derivative_bounds.1.0.0.0" proved="true">
+     <proof prover="1"><result status="valid" time="1.721858" steps="27063"/></proof>
+     </goal>
+    </transf>
+    </goal>
+   </transf>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="lipschitz_sigmoid" proved="true">
+ <transf name="split_vc" proved="true" >
+  <goal name="lipschitz_sigmoid.0" proved="true">
+  <transf name="inline_goal" proved="true" >
+   <goal name="lipschitz_sigmoid.0.0" proved="true">
+   <transf name="split_all_full" proved="true" >
+    <goal name="lipschitz_sigmoid.0.0.0" proved="true">
+    <transf name="inline_goal" proved="true" >
+     <goal name="lipschitz_sigmoid.0.0.0.0" proved="true">
+     <transf name="instantiate" proved="true" arg1="mean_value_theorem_sigmoid" arg2="x">
+      <goal name="lipschitz_sigmoid.0.0.0.0.0" proved="true">
+      <transf name="instantiate" proved="true" arg1="Hinst" arg2="y">
+       <goal name="lipschitz_sigmoid.0.0.0.0.0.0" proved="true">
+       <proof prover="1"><result status="valid" time="0.609668" steps="30306"/></proof>
+       </goal>
+      </transf>
+      </goal>
+     </transf>
+     </goal>
+    </transf>
+    </goal>
+   </transf>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="sigmoid&#39;vc" expl="VC for sigmoid" proved="true">
+ <proof prover="2"><result status="valid" time="0.065549" steps="9000"/></proof>
+ </goal>
+</theory>
+<theory name="LR" proved="true">
+ <goal name="logisticRegression&#39;vc" expl="VC for logisticRegression" proved="true">
+ <transf name="split_vc" proved="true" >
+  <goal name="logisticRegression&#39;vc.0" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.012175" steps="85144"/></proof>
+  </goal>
+  <goal name="logisticRegression&#39;vc.1" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.017430" steps="7138"/></proof>
+  </goal>
+  <goal name="logisticRegression&#39;vc.2" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.015379" steps="92570"/></proof>
+  </goal>
+  <goal name="logisticRegression&#39;vc.3" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.122365" steps="23252"/></proof>
+  </goal>
+  <goal name="logisticRegression&#39;vc.4" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.047870" steps="27859"/></proof>
+  </goal>
+  <goal name="logisticRegression&#39;vc.5" expl="postcondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.011556" steps="99165"/></proof>
+  </goal>
+  <goal name="logisticRegression&#39;vc.6" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.053319" steps="15103"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="determinism" proved="true">
+ <proof prover="2"><result status="valid" time="0.049533" steps="7305"/></proof>
+ </goal>
+ <goal name="lr_constraint_shape" proved="true">
+ <proof prover="2"><result status="valid" time="0.282417" steps="38755"/></proof>
+ </goal>
+ <goal name="sigmoid_complementarity" proved="true">
+ <proof prover="0"><result status="valid" time="0.144343" steps="68224"/></proof>
+ </goal>
+ <goal name="add_matmul_neg_tensor" proved="true">
+ <proof prover="1"><result status="valid" time="0.096068" steps="1884"/></proof>
+ </goal>
+ <goal name="controlled_symmetry" proved="true">
+ <proof prover="2"><result status="valid" time="0.235195" steps="43815"/></proof>
+ </goal>
+ <goal name="lipschitz_continuity" proved="true">
+ <proof prover="0"><result status="valid" time="0.351303" steps="92162"/></proof>
+ </goal>
+</theory>
+</file>
+</why3session>

@@ -298,13 +298,6 @@ module OPMaxPool2d
         }
     requires { h > 0 /\ w > 0}
     requires { pad_top < h /\ pad_left < w /\ pad_bottom < h /\ pad_right < w }
-
-    ensures { result.dims = maxpool_dims x str_h str_w h w dir_h dir_w pad_top pad_left pad_bottom pad_right }
-    ensures {let y_dims = maxpool_dims x str_h str_w h w dir_h dir_w pad_top pad_left pad_bottom pad_right in
-             result.data = dmaxpool x y_dims h w dir_h dir_w pad_top pad_left pad_bottom pad_right str_h str_w
-            
-            }
-    ensures { result.background = x.background }
     =
         let y_dims = maxpool_dims x str_h str_w h w dir_h dir_w pad_top pad_left pad_bottom pad_right in
         {

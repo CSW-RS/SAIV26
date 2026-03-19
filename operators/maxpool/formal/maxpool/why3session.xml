@@ -116,7 +116,7 @@
  </transf>
  </goal>
  <goal name="maxpool&#39;vc" expl="VC for maxpool" proved="true">
- <proof prover="1"><result status="valid" time="1.163841" steps="48145"/></proof>
+ <proof prover="1"><result status="valid" time="1.588772" steps="57108"/></proof>
  </goal>
 </theory>
 <theory name="COPMaxpool2d" proved="true">
@@ -175,7 +175,7 @@
    <goal name="coords_from_X_p&#39;vc.16.0" expl="assertion" proved="true">
    <transf name="split_all_full" proved="true" >
     <goal name="coords_from_X_p&#39;vc.16.0.0" expl="assertion" proved="true">
-    <proof prover="0" timelimit="5" memlimit="2000"><result status="valid" time="2.609035" steps="258421"/></proof>
+    <proof prover="0" timelimit="5" memlimit="2000"><result status="valid" time="3.607758" steps="258421"/></proof>
     </goal>
    </transf>
    </goal>
@@ -188,7 +188,7 @@
   <proof prover="3"><result status="valid" time="0.049256" steps="187905"/></proof>
   </goal>
   <goal name="coords_from_X_p&#39;vc.19" expl="precondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.747364" steps="1870898"/></proof>
+  <proof prover="3"><result status="valid" time="1.155542" steps="1870898"/></proof>
   </goal>
   <goal name="coords_from_X_p&#39;vc.20" expl="precondition" proved="true">
   <proof prover="2"><result status="valid" time="0.162575" steps="28263"/></proof>
@@ -288,7 +288,7 @@
     <goal name="w_cools_calculate&#39;vc.26.0.0" expl="assertion" proved="true">
     <transf name="split_all_full" proved="true" >
      <goal name="w_cools_calculate&#39;vc.26.0.0.0" expl="assertion" proved="true">
-     <proof prover="0" timelimit="30"><result status="valid" time="9.113281" steps="506177"/></proof>
+     <proof prover="0" timelimit="30"><result status="valid" time="12.632262" steps="506177"/></proof>
      </goal>
     </transf>
     </goal>
@@ -297,7 +297,7 @@
   </transf>
   </goal>
   <goal name="w_cools_calculate&#39;vc.27" expl="loop invariant preservation" proved="true">
-  <proof prover="2"><result status="valid" time="0.538762" steps="70955"/></proof>
+  <proof prover="2"><result status="valid" time="0.709560" steps="70955"/></proof>
   </goal>
   <goal name="w_cools_calculate&#39;vc.28" expl="postcondition" proved="true">
   <proof prover="3"><result status="valid" time="0.003801" steps="4596"/></proof>
@@ -349,7 +349,7 @@
   <proof prover="1"><result status="valid" time="0.055434" steps="282"/></proof>
   </goal>
   <goal name="w_lines_calculate&#39;vc.11" expl="loop invariant preservation" proved="true">
-  <proof prover="2"><result status="valid" time="0.635319" steps="129608"/></proof>
+  <proof prover="2"><result status="valid" time="1.654494" steps="129608"/></proof>
   </goal>
   <goal name="w_lines_calculate&#39;vc.12" expl="postcondition" proved="true">
   <proof prover="3"><result status="valid" time="0.004833" steps="3835"/></proof>
@@ -437,7 +437,7 @@
   <proof prover="3"><result status="valid" time="0.008987" steps="26344"/></proof>
   </goal>
   <goal name="cmaxpool&#39;vc.23" expl="integer overflow" proved="true">
-  <proof prover="3"><result status="valid" time="0.486004" steps="1488675"/></proof>
+  <proof prover="3"><result status="valid" time="0.723557" steps="1488675"/></proof>
   </goal>
   <goal name="cmaxpool&#39;vc.24" expl="loop invariant init" proved="true">
   <proof prover="2"><result status="valid" time="0.106504" steps="25263"/></proof>
@@ -505,7 +505,7 @@
   <goal name="cmaxpool&#39;vc.45" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="cmaxpool&#39;vc.45.0" expl="precondition" proved="true">
-   <proof prover="2" timelimit="5" memlimit="2000"><result status="valid" time="2.572394" steps="204786"/></proof>
+   <proof prover="2" timelimit="5" memlimit="2000"><result status="valid" time="3.475588" steps="204786"/></proof>
    </goal>
    <goal name="cmaxpool&#39;vc.45.1" expl="precondition" proved="true">
    <proof prover="2"><result status="valid" time="0.349229" steps="57968"/></proof>
@@ -527,7 +527,7 @@
       <proof prover="3" obsolete="true"><result status="timeout" time="1.000000" steps="2146258"/></proof>
       <transf name="split_vc" proved="true" >
        <goal name="cmaxpool&#39;vc.46.0.0.0.0.0" expl="assertion" proved="true">
-       <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="11.041249" steps="602365"/></proof>
+       <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="14.475302" steps="602365"/></proof>
        </goal>
       </transf>
       </goal>
@@ -545,7 +545,7 @@
   <goal name="cmaxpool&#39;vc.48" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="cmaxpool&#39;vc.48.0" expl="assertion" proved="true">
-   <proof prover="2" timelimit="5" memlimit="2000"><result status="valid" time="2.965824" steps="219529"/></proof>
+   <proof prover="2" timelimit="5" memlimit="2000"><result status="valid" time="4.216790" steps="219529"/></proof>
    </goal>
   </transf>
   </goal>
@@ -568,7 +568,7 @@
      <proof prover="2"><result status="valid" time="0.267434" steps="44976"/></proof>
      </goal>
      <goal name="cmaxpool&#39;vc.50.0.0.3" expl="assertion" proved="true">
-     <proof prover="2" timelimit="5" memlimit="2000"><result status="valid" time="3.449779" steps="332341"/></proof>
+     <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="5.244301" steps="332341"/></proof>
      </goal>
     </transf>
     </goal>
@@ -602,10 +602,10 @@
      <proof prover="3"><result status="valid" time="0.012919" steps="16134"/></proof>
      </goal>
      <goal name="cmaxpool&#39;vc.54.0.0.2" expl="assertion" proved="true">
-     <proof prover="2"><result status="valid" time="0.157334" steps="45694"/></proof>
+     <proof prover="2"><result status="valid" time="0.334173" steps="45694"/></proof>
      </goal>
      <goal name="cmaxpool&#39;vc.54.0.0.3" expl="assertion" proved="true">
-     <proof prover="2" timelimit="5" memlimit="2000"><result status="valid" time="4.290080" steps="385752"/></proof>
+     <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="6.227319" steps="385752"/></proof>
      </goal>
     </transf>
     </goal>
@@ -616,7 +616,7 @@
   <goal name="cmaxpool&#39;vc.55" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="cmaxpool&#39;vc.55.0" expl="assertion" proved="true">
-   <proof prover="2" timelimit="5" memlimit="2000"><result status="valid" time="4.058846" steps="287533"/></proof>
+   <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="6.627115" steps="287533"/></proof>
    </goal>
   </transf>
   </goal>
@@ -639,10 +639,10 @@
      <proof prover="3"><result status="valid" time="0.008029" steps="16684"/></proof>
      </goal>
      <goal name="cmaxpool&#39;vc.58.0.0.2" expl="assertion" proved="true">
-     <proof prover="2"><result status="valid" time="0.144620" steps="47099"/></proof>
+     <proof prover="2"><result status="valid" time="0.386593" steps="47099"/></proof>
      </goal>
      <goal name="cmaxpool&#39;vc.58.0.0.3" expl="assertion" proved="true">
-     <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="5.468886" steps="430502"/></proof>
+     <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="8.006685" steps="430502"/></proof>
      </goal>
     </transf>
     </goal>
@@ -653,7 +653,7 @@
   <goal name="cmaxpool&#39;vc.59" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="cmaxpool&#39;vc.59.0" expl="assertion" proved="true">
-   <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="5.242896" steps="323060"/></proof>
+   <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="7.049113" steps="323060"/></proof>
    </goal>
   </transf>
   </goal>
@@ -676,10 +676,10 @@
      <proof prover="3"><result status="valid" time="0.009309" steps="17378"/></proof>
      </goal>
      <goal name="cmaxpool&#39;vc.62.0.0.2" expl="assertion" proved="true">
-     <proof prover="2"><result status="valid" time="0.200043" steps="49092"/></proof>
+     <proof prover="2"><result status="valid" time="0.357529" steps="49092"/></proof>
      </goal>
      <goal name="cmaxpool&#39;vc.62.0.0.3" expl="assertion" proved="true">
-     <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="9.233712" steps="526318"/></proof>
+     <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="12.509134" steps="526318"/></proof>
      </goal>
     </transf>
     </goal>
@@ -688,13 +688,13 @@
   </transf>
   </goal>
   <goal name="cmaxpool&#39;vc.63" expl="assertion" proved="true">
-  <proof prover="0" memlimit="1000"><result status="timeout" time="1.000000" steps="150779"/></proof>
-  <proof prover="1"><result status="timeout" time="1.000000" steps="35673"/></proof>
-  <proof prover="2"><result status="timeout" time="1.000000"/></proof>
-  <proof prover="3"><result status="timeout" time="1.423292" steps="5433182"/></proof>
+  <proof prover="0" memlimit="1000" obsolete="true"><result status="timeout" time="1.000000" steps="150779"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.000000" steps="35673"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.000000"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.423292" steps="5433182"/></proof>
   <transf name="split_vc" proved="true" >
    <goal name="cmaxpool&#39;vc.63.0" expl="assertion" proved="true">
-   <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="4.721620" steps="374301"/></proof>
+   <proof prover="2" timelimit="30" memlimit="4000"><result status="valid" time="8.239068" steps="374301"/></proof>
    </goal>
   </transf>
   </goal>
@@ -717,7 +717,7 @@
   <proof prover="2"><result status="valid" time="0.329593" steps="53484"/></proof>
   </goal>
   <goal name="cmaxpool&#39;vc.70" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.007244" steps="8277"/></proof>
+  <proof prover="3"><result status="valid" time="0.007244" steps="8049"/></proof>
   </goal>
   <goal name="cmaxpool&#39;vc.71" expl="loop invariant preservation" proved="true">
   <proof prover="3"><result status="valid" time="0.012104" steps="22740"/></proof>
@@ -761,7 +761,7 @@
      <goal name="cmaxpool&#39;vc.82.0.0.0" expl="assertion" proved="true">
      <transf name="split_vc" proved="true" >
       <goal name="cmaxpool&#39;vc.82.0.0.0.0" expl="assertion" proved="true">
-      <proof prover="2"><result status="valid" time="1.950799" steps="188415"/></proof>
+      <proof prover="2" timelimit="5" memlimit="2000"><result status="valid" time="2.881867" steps="188415"/></proof>
       </goal>
      </transf>
      </goal>
@@ -781,18 +781,18 @@
      <transf name="split_vc" proved="true" >
       <goal name="cmaxpool&#39;vc.83.0.0.0.0" expl="VC for cmaxpool" proved="true">
       <proof prover="0" timelimit="30" obsolete="true"><result status="valid" time="26.942498" steps="3028126"/></proof>
-      <proof prover="2"><result status="valid" time="0.188238" steps="41742"/></proof>
+      <proof prover="2"><result status="valid" time="0.350378" steps="41742"/></proof>
       </goal>
      </transf>
      </goal>
      <goal name="cmaxpool&#39;vc.83.0.0.1" expl="VC for cmaxpool" proved="true">
-     <proof prover="0" memlimit="1000"><result status="timeout" time="1.000000" steps="148671"/></proof>
-     <proof prover="1"><result status="timeout" time="1.000000" steps="65991"/></proof>
-     <proof prover="2"><result status="timeout" time="1.483608"/></proof>
-     <proof prover="3"><result status="timeout" time="1.000000" steps="2613999"/></proof>
+     <proof prover="0" memlimit="1000" obsolete="true"><result status="timeout" time="1.000000" steps="148671"/></proof>
+     <proof prover="1" obsolete="true"><result status="timeout" time="1.000000" steps="65991"/></proof>
+     <proof prover="2" obsolete="true"><result status="timeout" time="1.483608"/></proof>
+     <proof prover="3" obsolete="true"><result status="timeout" time="1.000000" steps="2613999"/></proof>
      <transf name="split_vc" proved="true" >
       <goal name="cmaxpool&#39;vc.83.0.0.1.0" expl="VC for cmaxpool" proved="true">
-      <proof prover="0" timelimit="30"><result status="valid" time="9.337709" steps="1204060"/></proof>
+      <proof prover="0" timelimit="30"><result status="valid" time="12.176319" steps="1204060"/></proof>
       </goal>
      </transf>
      </goal>
@@ -803,13 +803,13 @@
   </transf>
   </goal>
   <goal name="cmaxpool&#39;vc.84" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.056049" steps="289354"/></proof>
+  <proof prover="3"><result status="valid" time="0.056049" steps="281476"/></proof>
   </goal>
   <goal name="cmaxpool&#39;vc.85" expl="out of loop bounds" proved="true">
-  <proof prover="3"><result status="valid" time="0.047283" steps="245641"/></proof>
+  <proof prover="3"><result status="valid" time="0.047283" steps="237928"/></proof>
   </goal>
   <goal name="cmaxpool&#39;vc.86" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.009307" steps="5369"/></proof>
+  <proof prover="3"><result status="valid" time="0.009307" steps="5141"/></proof>
   </goal>
  </transf>
  </goal>

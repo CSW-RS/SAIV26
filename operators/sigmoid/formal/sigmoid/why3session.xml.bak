@@ -13,15 +13,15 @@
  <proof prover="3"><result status="valid" time="0.009299" steps="40445"/></proof>
  </goal>
  <goal name="sigmoid&#39;vc" expl="VC for sigmoid" proved="true">
- <proof prover="3"><result status="valid" time="0.023700" steps="50508"/></proof>
+ <proof prover="3"><result status="valid" time="0.023700" steps="42914"/></proof>
  </goal>
 </theory>
 <theory name="COPSigmoid" proved="true">
  <goal name="csigmoid&#39;vc" expl="VC for csigmoid" proved="true">
- <proof prover="0"><result status="timeout" time="1.000000" steps="190519"/></proof>
- <proof prover="1"><result status="timeout" time="1.000000" steps="19097"/></proof>
- <proof prover="2"><result status="timeout" time="1.000000"/></proof>
- <proof prover="3"><result status="timeout" time="0.783171" steps="2101674"/></proof>
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.000000" steps="190519"/></proof>
+ <proof prover="1" obsolete="true"><result status="timeout" time="1.000000" steps="19097"/></proof>
+ <proof prover="2" obsolete="true"><result status="timeout" time="1.000000"/></proof>
+ <proof prover="3" obsolete="true"><result status="timeout" time="0.783171" steps="2101674"/></proof>
  <transf name="split_vc" proved="true" >
   <goal name="csigmoid&#39;vc.0" expl="precondition" proved="true">
   <proof prover="3"><result status="valid" time="0.110275" steps="360760"/></proof>
@@ -48,13 +48,13 @@
   <proof prover="1"><result status="valid" time="0.067656" steps="703"/></proof>
   </goal>
   <goal name="csigmoid&#39;vc.8" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.161836" steps="1836"/></proof>
+  <proof prover="1"><result status="valid" time="0.161836" steps="2222"/></proof>
   </goal>
   <goal name="csigmoid&#39;vc.9" expl="postcondition" proved="true">
-  <proof prover="3"><result status="valid" time="0.028099" steps="154526"/></proof>
+  <proof prover="3"><result status="valid" time="0.028099" steps="154565"/></proof>
   </goal>
   <goal name="csigmoid&#39;vc.10" expl="out of loop bounds" proved="true">
-  <proof prover="3"><result status="valid" time="0.039241" steps="127744"/></proof>
+  <proof prover="3"><result status="valid" time="0.039241" steps="127804"/></proof>
   </goal>
  </transf>
  </goal>

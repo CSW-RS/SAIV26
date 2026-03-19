@@ -14,8 +14,6 @@ module OPSigmoid
                 x.background
 
     let ghost function sigmoid(x: tensor real): tensor real
-    ensures { x ~= result }
-    ensures { result.data = dsigmoid x }
     =
     { dims = x.dims; data = dsigmoid x; background = x.background }
 

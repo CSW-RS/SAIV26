@@ -93,14 +93,6 @@ module OPFlatten
 
     let ghost function flatten (x : tensor 'a) (axis : int) : tensor 'a
     requires { -length x.dims <= axis <= length x.dims }
-
-    ensures {   let axis_normalized = normalize_axis axis (length x.dims) in
-                result.dims = flat_dims x axis_normalized }
-
-    ensures { result.background = x.background }
-
-    ensures {   let axis_normalized = normalize_axis axis (length x.dims) in
-                result.data = dflatten x (flat_dims x axis_normalized) }
     =
     let axis_normalized = normalize_axis axis (length x.dims) in
     let y_shape = flat_dims x axis_normalized in

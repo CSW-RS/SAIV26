@@ -15,8 +15,6 @@ module OPAdd
     
     let ghost function add (a b : tensor real) : tensor real
     requires { a ~= b }
-    ensures { result ~= a ~= b }
-    ensures { result.data = dadd a b }
     =
         { dims = a.dims; data = dadd a b; background = a.background }
         

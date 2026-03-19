@@ -8,12 +8,12 @@
 <path name=".."/><path name="add.mlw"/>
 <theory name="OPAdd" proved="true">
  <goal name="add&#39;vc" expl="VC for add" proved="true">
- <proof prover="1"><result status="valid" time="0.021000" steps="39646"/></proof>
+ <proof prover="1"><result status="valid" time="0.021000" steps="37555"/></proof>
  </goal>
 </theory>
 <theory name="COPAdd" proved="true">
  <goal name="cadd&#39;vc" expl="VC for cadd" proved="true">
- <proof prover="0"><result status="valid" time="0.520124" steps="4258"/></proof>
+ <proof prover="0"><result status="valid" time="0.520124" steps="4223"/></proof>
  </goal>
 </theory>
 </file>
